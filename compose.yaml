@@ -1,0 +1,22 @@
+﻿services:
+  db:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    environment:
+      ACCEPT_EULA: Y
+      MSSQL_SA_PASSWORD: YourStrong@Passw0rd
+      MSSQL_DBNAME: epensivedb
+    ports:
+      - "1433:1433"
+    volumes:
+      - mssql-data:/var/opt/mssql
+    restart: unless-stopped
+    healthcheck:
+      test: [ "CMD", "/opt/mssql-tools/bin/sqlcmd", "-Usa", "-PYourStrong@Passw0rd", "-Q", "select 1" ]
+      interval: 1s
+      retries: 20
+      timeout: 5s
+
+volumes:
+  mssql-data:
