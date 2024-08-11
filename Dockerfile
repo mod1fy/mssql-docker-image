@@ -2,7 +2,7 @@
 FROM mcr.microsoft.com/mssql/server:${TAG}
 
 ENV MSSQL_DBNAME=master \
-    MSSQL_SA_PASSWORD=YourStrongPassword123! \
+    MSSQL_SA_PASSWORD=1 \
     ACCEPT_EULA=Y
 
 # Switch to root to install required packages
